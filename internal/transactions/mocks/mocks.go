@@ -17,3 +17,11 @@ type SenderMock struct {
 func (s *SenderMock) Send(summary domain.Summary) error {
 	return s.ExpectedSend(summary)
 }
+
+type TransactionRepositoryMock struct {
+	ExpectedCreate func(summary domain.Summary, transactions domain.TransactionList) error
+}
+
+func (t *TransactionRepositoryMock) Create(summary domain.Summary, transactions domain.TransactionList) error {
+	return t.ExpectedCreate(summary, transactions)
+}

@@ -3,22 +3,22 @@ package domain
 import "fmt"
 
 type Summary struct {
-	balance             float64
-	groupTransactions   map[string]int
-	averageTransactions map[string]float64
+	Balance             float64
+	GroupTransactions   map[string]int
+	AverageTransactions map[string]float64
 }
 
 func NewSummary(balance float64, groupTransactions map[string]int, averageTransactions map[string]float64) Summary {
 	return Summary{
-		balance:             balance,
-		groupTransactions:   groupTransactions,
-		averageTransactions: averageTransactions,
+		Balance:             balance,
+		GroupTransactions:   groupTransactions,
+		AverageTransactions: averageTransactions,
 	}
 }
 
 func (s Summary) GroupTransactionsAsStringArray() []string {
 	var transactions []string
-	for date, countTransactions := range s.groupTransactions {
+	for date, countTransactions := range s.GroupTransactions {
 		transactions = append(transactions, fmt.Sprintf("%s: %d\n", date, countTransactions))
 	}
 
@@ -27,7 +27,7 @@ func (s Summary) GroupTransactionsAsStringArray() []string {
 
 func (s Summary) AverageTransactionsAsStringArray() []string {
 	var transactions []string
-	for averageType, average := range s.averageTransactions {
+	for averageType, average := range s.AverageTransactions {
 		transactions = append(transactions, fmt.Sprintf("%s: %.2f\n", averageType, average))
 	}
 
@@ -35,7 +35,7 @@ func (s Summary) AverageTransactionsAsStringArray() []string {
 }
 
 func (s Summary) BalanceAsString() string {
-	return fmt.Sprintf("Total balance is %.2f\n", s.balance)
+	return fmt.Sprintf("Total balance is %.2f\n", s.Balance)
 }
 
 func (s Summary) AsString() string {
