@@ -17,7 +17,7 @@ const (
 )
 
 var (
-	ErrNotValidDate   = errors.New("not valid date")
+	ErrNotValidDate   = errors.New("not valid date %s")
 	ErrNotValidID     = errors.New("not valid id")
 	ErrNotValidAmount = errors.New("not valid amount")
 	ErrEmptyAmount    = errors.New("amount is empty")
@@ -130,10 +130,12 @@ func (transactions TransactionList) Average() map[string]float64 {
 func parseDate(date string) (*time.Time, error) {
 	fields := strings.Split(date, dateSeparator)
 	if len(fields) < 2 {
+		fmt.Println(date)
 		return nil, ErrNotValidDate
 	}
 
 	if len(fields) > 3 {
+		fmt.Println(date)
 		return nil, ErrNotValidDate
 	}
 
@@ -144,6 +146,7 @@ func parseDate(date string) (*time.Time, error) {
 
 	dateAsTime, err := time.Parse(time.DateOnly, dateAsString)
 	if err != nil {
+		fmt.Println(dateAsString)
 		return nil, ErrNotValidDate
 	}
 
