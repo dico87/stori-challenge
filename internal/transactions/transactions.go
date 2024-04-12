@@ -31,7 +31,8 @@ func NewTransactions(sender Sender, reader Reader, repository TransactionReposit
 }
 
 func (t Transactions) Process() error {
-	transactions, err := t.reader.Read("sample.csv")
+	transactions, err := t.reader.Read("large_sample.csv")
+
 	if err != nil {
 		return err
 	}
